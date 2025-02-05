@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pago Retroactivo Modalidad 40</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pago Retroactivo Modalidad 40</h1>
+    <p>Estimado usuario, a continuación, se muestra el cálculo detallado de la Modalidad 40 del IMSS.</p>
+    
+    <h2>Datos de la simulación</h2>
+    <ul>
+        <li><strong>Fecha de inicio:</strong> {{ fecha_inicio }}</li>
+        <li><strong>Fecha de fin:</strong> {{ fecha_fin }}</li>
+        <li><strong>Número de UMAs:</strong> {{ numero_umas }}</li>
+        <li><strong>Recargo mensual:</strong> {{ recargo_mensual }}%</li>
+        <li><strong>Inflación mensual:</strong> {{ inflacion_mensual }}%</li>
+        <li><strong>Total de meses a pagar:</strong> {{ numero_meses }}</li>
+        <li><strong>Total a pagar:</strong> ${{ pago_total }}</li>
+    </ul>
+
+    <h2>Detalles por mes</h2>
+    <table>
+        <tr>
+            <th>Fecha</th>
+            <th>Salario Base</th>
+            <th>Cuota Mensual</th>
+            <th>Recargo</th>
+            <th>Inflación</th>
+            <th>Total Mensual</th>
+        </tr>
+        {% for mes in detalles %}
+        <tr>
+            <td>{{ mes.fecha }}</td>
+            <td>${{ mes.salario_base }}</td>
+            <td>${{ mes.cuota_mensual }}</td>
+            <td>${{ mes.recargo }}</td>
+            <td>${{ mes.inflacion }}</td>
+            <td><strong>${{ mes.total_mes }}</strong></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p class="footer">Este documento es una simulación y no representa un cálculo oficial del IMSS.</p>
+</body>
+</html>
